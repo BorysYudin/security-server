@@ -1,0 +1,30 @@
+{% extends 'labs/base.html' %}
+
+{% block content %}
+    <h2 style="padding: 32px 0px">String hash</h2>
+
+    <form action="{% url 'labs:string_hash' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="string" class="col-sm-1 col-form-label">String</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" name="string" id="string">
+            </div>
+        </div>
+
+        <div class="form-group row">
+        <div class="col-sm-12" align="right">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    </form>
+    {% if string_hash %}
+        <h2>Result</h2>
+        <div class="row">
+            <label class="col-sm-2">Hash</label>
+            <div class="col-sm-12">
+                <textarea id="string_hash" disabled style="width: 100%; height: 200px">{{ string_hash }}</textarea>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'labs/base.html' %}
+
+{% block content %}
+<h2 style="padding: 32px 0px">Random</h2>
+
+<form action="{% url 'labs:lab1' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group row">
+        <label for="lab1_a" class="col-sm-2 col-form-label">A</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="lab1_a" id="lab1_a" value="125">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="lab1_x0" class="col-sm-2 col-form-label">X0</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="lab1_x0" id="lab1_x0" value="512">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="lab1_c" class="col-sm-2 col-form-label">C</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="lab1_c" id="lab1_c" value="34">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="lab1_m" class="col-sm-2 col-form-label">M</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="lab1_m" id="lab1_m" value="262143">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="lab1_count" class="col-sm-2 col-form-label">Numbers count</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="lab1_count" id="lab1_count" value="100">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12" align="right">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+{% if lab1_result %}
+<h2>Result</h2>
+<div class="row">
+    <label class="col-sm-2">Numbers count</label>
+    <div class="col-sm-12">
+        <textarea id="lab1_numbers" disabled style="width: 100%; height: 200px">{{ lab1_result.numbers }}</textarea>
+    </div>
+</div>
+<br>
+<div class="row">
+    <label class="col-sm-2">Period</label>
+    <div class="col-sm-12">
+        <input type="number" id="lab1_period" value="{{lab1_result.period}}" disabled><br>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
