@@ -145,3 +145,7 @@ cython_debug/
 test.*
 .DS_Store
 file_hash.txt
+
+in.txt
+out.txt
+decrypted.txt
