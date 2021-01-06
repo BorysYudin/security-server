@@ -3,6 +3,7 @@ import argparse
 from time import time
 from functools import partial
 
+from helpers import profile
 from main import MD5, Rand
 
 rand = Rand(1103515245, int(time()) % 2**31, 12345, 2**31)
@@ -114,6 +115,7 @@ class RC5:
 
         return A_, B_
 
+    @profile
     def encrypt(self, in_file, out_file):
         prev_A, prev_B = self._generate_iv(out_file)
         with open(in_file, 'rb') as inp, open(out_file, 'ab') as out:
@@ -126,7 +128,6 @@ class RC5:
                     text = b""
                 elif len(text) < self.BYTES_TO_READ:
                     end_text = True
-                    print(self.BYTES_TO_READ - len(text))
                     text = text.ljust(self.BYTES_TO_READ, bytes([self.BYTES_TO_READ - len(text)]))
 
                 A = i_from_b(text[:self._word_bytes]) ^ prev_A
@@ -154,6 +155,7 @@ class RC5:
 
         return A, B
 
+    @profile
     def decrypt(self, in_file, out_file):
         with open(in_file, 'rb') as inp, open(out_file, 'wb') as out:
             # Get iv from first block

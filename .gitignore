@@ -147,5 +147,11 @@ test.*
 file_hash.txt
 
 in.txt
+in4.txt
 out.txt
+out4.txt
 decrypted.txt
+decrypted4.txt
+
+key.pem
+pub_key.pem
